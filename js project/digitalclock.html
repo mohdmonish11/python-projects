@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digital Clock</title>
+</head>
+<body>
+<center>
+<div id="clock"></div>
+<button  onclick= "startClock()"> Start Clock </button>
+<button onclick= "stopClock()"> Stop Clock </button>
+</center>
+<script type="text/javascript">
+	function startClock(){
+		var date = new Date(); // new is used to create new object
+		var hour = date.getHours();
+		var min = date.getMinutes();
+		var sec = date.getSeconds();
+		var session = "AM"
+
+			if (hour>12){
+				hour =hour-12;
+				session="PM";
+			}
+			if (hour<10) hour= "0"+hour;
+			if (min<10) min = "0"+min;
+			if (sec<10) sec = "0"+sec;
+			if (hour==0) hour = 12;
+			/*
+			hour = hour < 10 ? "0" + hour : hour; //we can write this way also
+            min = min < 10 ? "0" + min : min; 
+            sec = sec < 10 ? "0" + sec : sec; 
+            */
+			document.getElementById("clock").innerText = hour + ":"+ min+ ":"+ sec+ ":" + session;
+			cleartimeout =setTimeout(startClock,1000); // 1000 is milisecond on which the program
+			//update value
+	}
+	function stopClock(){
+		clearTimeout(cleartimeout);
+	}
+</script>
+<style type="text/css">
+	body{
+		margin:20%;
+		padding: 20px;
+		background-color: lightblue;
+	}
+	#clock{
+		padding: 5%;
+		font-family: Arial;
+		color:darkgreen;
+		font-size: x-large;
+		font-style: normal; // (normal,italic,oblique)
+		font-color:lightgreen;
+		margin:20px;
+	}
+</style>
+</body>
+</html>
